@@ -123,6 +123,10 @@ nav, article {
 	max-height: 240px;
 }
 
+.placeholder-img {
+	border: none !important;
+}
+
 .hidden {
 	display: none;
 }
