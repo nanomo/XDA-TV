@@ -14,7 +14,6 @@
 		<link rel="stylesheet" href="html5reset.css" type="text/css" media="screen" title="no title" charset="utf-8">
 		<link rel="stylesheet" href="style.css" type="text/css" />
 
-		<script src="phonegap.0.9.6.js" type="text/javascript" charset="utf-8"></script>
 		<script src="iscroll/iscroll.js" type="text/javascript" charset="utf-8"></script>
 		<script src="iscroll/init.js" type="text/javascript" charset="utf-8"></script>
 		
@@ -34,12 +33,18 @@
 					</ul>
 				</nav>
 			</div>
-			<div id="detailView">
-				<article>
-					<center>
-						<img src="shared/placeholder-img.png" class="placeholder-img"><br /><br />
-						<h1 id="videoTitle">No Video Selected</h1>
-					</center>
+			<div id="content">
+				<article id="detailView">
+					<span>
+						<center>
+							<img src="shared/placeholder-img.png" class="placeholder-img">
+							<br /><br />
+							<h1 id="videoTitle">No Video Selected</h1>
+						</center>
+					</span>
+					<div id="contentScroller">
+						
+					</div>
 				</article>
 			</div>
 		</div>

@@ -1,22 +1,37 @@
 var lastRandom = null;
 
+function go(url) {
+	location.href = url;
+}
+
 function load() {
 	$.ajax({
     	type: "GET",
-    	url: "http://feeds.feedburner.com/XdaTv?format=xml",
+    	url: "http://50.56.93.249/xdatv/feed.xml",
     	dataType: "xml",
     	success: parseXml
   	});
 }
 
 function parseXml(xml) {
+	$("#content").css("width", $(window).width() - 262);
+
 	$(xml).find("item").each(function() {
 		$("#navScroller").append("<li onClick='select(" + randomString() + ")'><a href='#' class='lstItem'>" + $(this).find("title").text() + "</a></li>");
-		$("#detailView").append("<article id='" + lastRandom + "' class='hidden'>\n<center><a href='" + $(this).find("enclosure").attr("url") + "'><img src='shared/play-video.png' /></a><br /><br /><h1 id='videoTitle'>" + clnTitle($(this).find("title").text()) + "</h1></center>\n</article>\n");
+
+		$("#contentScroller").append("<span id='" + lastRandom + "' class='hidden'>\n<center><a href='" + $(this).find("enclosure").attr("url") + "'><img src='" + posterImage($(this).find("[nodeName=media:thumbnail]").attr("url")) + "' /></a><br /><br /><div id='descView'><div id='scroller' class='scroll'><marquee scrollamount='1' scrolldelay='10' direction='up' height='100'>" + $(this).find("description").text() + "</marquee></div></div></center>\n</span>\n");
 	});
 
-	cleanTitles()
+	cleanTitles();
 	loaded();
+}
+
+function posterImage(img) {
+	if(img != null) {
+		return img;
+	} else {
+		return "shared/play-video.png";
+	}
 }
 
 function cleanTitles() {
@@ -47,7 +62,7 @@ function randomString() {
 }
 
 function hideAll() {
-	var sections = document.getElementsByTagName('article');
+	var sections = document.getElementsByTagName('span');
 
 	for (var i = 0; i < sections.length; i++) {
 		var section = sections[i];
